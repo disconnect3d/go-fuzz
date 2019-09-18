@@ -8,8 +8,8 @@ import (
 	"sort"
 	"strconv"
 
-	. "github.com/dvyukov/go-fuzz/go-fuzz-defs"
-	"github.com/dvyukov/go-fuzz/go-fuzz/internal/pcg"
+	. "github.com/disconnect3d/go-fuzz/go-fuzz-defs"
+	"github.com/disconnect3d/go-fuzz/go-fuzz/internal/pcg"
 )
 
 type Mutator struct {

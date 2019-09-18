@@ -8,8 +8,8 @@ import (
 	"log"
 	"os"
 
-	. "github.com/dvyukov/go-fuzz/go-fuzz-defs"
-	. "github.com/dvyukov/go-fuzz/internal/go-fuzz-types"
+	. "github.com/disconnect3d/go-fuzz/go-fuzz-defs"
+	. "github.com/disconnect3d/go-fuzz/internal/go-fuzz-types"
 )
 
 func makeCopy(data []byte) []byte {
