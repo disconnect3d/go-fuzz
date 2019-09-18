@@ -59,7 +59,6 @@ func makeTags() string {
 // that clients can then modify and use for calls to go/packages.
 func basePackagesConfig() *packages.Config {
 	cfg := new(packages.Config)
-	cfg.Env = append(os.Environ(), "GO111MODULE=off")
 	return cfg
 }
 
@@ -235,7 +234,7 @@ func (c *Context) loadPkg(pkg string) {
 	// See https://golang.org/issue/30826 and https://golang.org/issue/30828.
 	rescfg := basePackagesConfig()
 	rescfg.Mode = packages.NeedName
-	rescfg.BuildFlags = []string{"-tags", makeTags()}
+	rescfg.BuildFlags = []string{"-mod=vendor", "-tags", makeTags()}
 	respkgs, err := packages.Load(rescfg, pkg)
 	if err != nil {
 		c.failf("could not resolve package %q: %v", pkg, err)
@@ -255,7 +254,7 @@ func (c *Context) loadPkg(pkg string) {
 	// of invalid code than trying to compile instrumented code.
 	cfg := basePackagesConfig()
 	cfg.Mode = packages.LoadAllSyntax
-	cfg.BuildFlags = []string{"-tags", makeTags()}
+	cfg.BuildFlags = []string{"-mod=vendor", "-tags", makeTags()}
 	// use custom ParseFile in order to get comments
 	cfg.ParseFile = func(fset *token.FileSet, filename string, src []byte) (*ast.File, error) {
 		return parser.ParseFile(fset, filename, src, parser.ParseComments)
